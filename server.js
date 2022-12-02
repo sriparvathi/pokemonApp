@@ -3,6 +3,7 @@ const express = require('express');
 const expressReactViews = require('express-react-views');
 // set express to a variable
 const app = express();
+const pokemon = require('./models/pokemon');
 //set a variable of port to 3000
 const port = 3000;
 app.set('view engine', 'jsx');
@@ -20,11 +21,11 @@ app.get('/', (req, res) => {
     res.send("<h1>Welcome to the Pokemon App!</h1>");
 
 });
-let pokemon = require('./models/pokemon');
+
 console.log(pokemon);
 app.get('/pokemon', (req, res) =>{
     //res.send(pokemon);
-    res.render('Index', {Pokemon: pokemon});
+    res.render('Index', {pokemonList: pokemon});
 });
 app.get('/pokemon/:id', (req, res) => {
     res.send(req.params.id);
